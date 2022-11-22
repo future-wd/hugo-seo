@@ -1,5 +1,7 @@
 # sitemap tester
 
+ADD BETTER ERROR HANDLING TO IMAGES IN PARAMS!!!
+
 <https://support.google.com/webmasters/answer/6062598>
 
 

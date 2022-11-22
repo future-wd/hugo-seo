@@ -132,23 +132,25 @@
   {{ end }}
 {{  end }}
 
-{{/* if image isnt found via page seo.image or .images array, use site config */}}
+{{/* if image isnt found via page seo.image or .images array or .image, use site config */}}
 {{ if not $img }}
   {{ with $config.seo.image }}
     {{  $img = . }}
   {{ end }}
 {{ end }}
-	
+
+
 {{/* check if image is a page or global resource
   assign the permalink to $img and assign resource to $imgRes 
-  *** only process if string to avoid netlify issue*/}}
+  *** only process if string to avoid netlify issue
+  */}}
 {{ $imgRes := false }}
-{{ if eq (printf "%T" $img) "string" }}
-  {{ with resources.GetMatch $img }}
+{{ with $img }}
+  {{ with resources.GetMatch .}}
     {{ $imgRes = . }}
     {{ $img = .RelPermalink  }}
   {{ else }}
-    {{ with .Resources.GetMatch $img }}
+    {{ with .Resources.GetMatch .}}
       {{ $imgRes = . }}
       {{ $img = .RelPermalink  }}
     {{ end }}
