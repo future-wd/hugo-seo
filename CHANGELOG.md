@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/future-wd/hugo-seo/compare/v1.0.3...v1.0.4) (2022-11-22)
+
+
+### Bug Fixes
+
+* add examples ([e547915](https://github.com/future-wd/hugo-seo/commit/e547915e09611085343e383f0c2a54196c90d626))
+* add faq example ([34c1dee](https://github.com/future-wd/hugo-seo/commit/34c1dee65d00a2febe2481addb86b1012da222a5))
+* add product catalog example ([cd8430b](https://github.com/future-wd/hugo-seo/commit/cd8430bf4c665e35c4e6252e30a282c1108d6e05))
+* breadcumbs working as param ([2572fef](https://github.com/future-wd/hugo-seo/commit/2572fef4bbd2bca19648138effe74b79a21fdd0d))
+* change title var and home text ([2d53e9f](https://github.com/future-wd/hugo-seo/commit/2d53e9faaf0ed90fe4d530ebac4e43aded75f246))
+* improve add tags example ([ff26fab](https://github.com/future-wd/hugo-seo/commit/ff26fab2cefde9c4175773339f26d9283b6b7230))
+* json-ld stype params and strip extras ([0bfab66](https://github.com/future-wd/hugo-seo/commit/0bfab66f078f4cbb9ca601e1c2f61706a44c7618))
+* only process image if string ([551fac0](https://github.com/future-wd/hugo-seo/commit/551fac0d40c1232606d15fd0789534fd18134f21))
+* update config ([c918ffa](https://github.com/future-wd/hugo-seo/commit/c918ffa042391135628ba8f6c7b4730a485c03c0))
+
 ### [1.0.3](https://github.com/future-wd/hugo-seo/compare/v1.0.2...v1.0.3) (2022-09-21)
 
 
