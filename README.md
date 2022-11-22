@@ -70,7 +70,9 @@ params:
       jsonld:
         article: true # only generated for .types configured in articleTypes or eventTypes
         breadcrumbs: true
-    titleSeparator: "|" # the character used in between the two strings for the title if not home page.
+    title_tag:
+      separator: "|"
+      home_text: "" # prepend this text on home page
     siteName: # site title override (for og/twitter)
     ogArticleTypes: [post, posts, blog, news, article, articles, event, events]
     jsonldArticleTypes: [article, articles, event, events]
@@ -215,7 +217,7 @@ Variable are in camelCase form if matching a json-ld property. Otherwise they ta
 | .dateModified     | ISO datestamp of modified time |.Lastmod |
 | .description      | Page description plain text | .Params.seo.description, .Description, .Summary, site.Params.seo.description, site.Params.description |
 | .title            | Page title | .Params.seo.title, .Title |
-| .siteTitle        | Site Title | site.Title, site.Params.title |
+| .site_title        | Site Title | site.Title, site.Params.title |
 | .image            | absURL of page image | .Params.seo.image, index (.Params.images) 0, .Params.image, site.Params.seo.image (static file, page resource or global resource) |
 | .imageHeight      | height of image | image variable above |
 | .imageWidth       | width of image | image variable above |

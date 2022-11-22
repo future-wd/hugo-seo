@@ -4,7 +4,7 @@
 {{ $s.Add "og" (dict "property" "og:url" "content" .canonical) }}
 {{ $s.Add "og" (dict "property" "og:title" "content" .title) }}
 {{ $s.Add "og" (dict "property" "og:locale" "content" .locale) }}
-{{ $s.Add "og" (dict "property" "og:site_name" "content" .siteTitle) }}
+{{ $s.Add "og" (dict "property" "og:site_name" "content" .site_title) }}
 {{ $s.Add "og" (dict "property" "og:type" "content" .ogType) }}
 
 {{ with .page.Section }}

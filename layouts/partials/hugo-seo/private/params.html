@@ -83,26 +83,33 @@
   ----------------------------
 1. Site title 
 2. Poorly config'd site title  */}}
-{{ $siteTitle := false }}
+{{ $site_title := false }}
 {{ with site.Title }}
-  {{ $siteTitle = . }}
+  {{ $site_title = . }}
 {{ else }}
-  {{ $siteTitle = site.Params.Title }}
+  {{ $site_title = site.Params.Title }}
 {{ end }}
-{{ $s.SetInMap "params" "siteTitle" $siteTitle }}
+{{ $s.SetInMap "params" "site_title" $site_title }}
  
 {{/* Title Tag
   ---------------------------- 
 	We use the following logic
-	1. Every pages: `{$title} | {$siteTitle}`
-	2. Homepage: , only {$siteTitle}
-  "|" title seperator is configured @ site.Params.seo.titleSeparator */}}
+	1. Every pages: `{$title} | {$site_title}`
+	2. Homepage: , `{$site_title}` or `{$title_tag_home_text} | {$site_title}` if available
+  "|" title seperator is configured @ site.title_tag.separator
+  *depreciated* site.Params.seo.titleSeparator */}}
+{{ $title_tag_separator := $config.title_tag.separator | default $config.titleSeparator }}
+{{ $title_tag_home_text := $config.title_tag.home_text }}
 {{ if not .IsHome }}
 	{{/* 1. All except home page */}}
-	{{  $s.SetInMap "params" "title_tag" (printf "%s %s %s" $title $config.titleSeparator $siteTitle)  }}
+	{{  $s.SetInMap "params" "title_tag" (printf "%s %s %s" $title $title_tag_separator $site_title)  }}
 {{ else }}
 	{{/* 2. Home page */}}
-	{{ $s.SetInMap "params" "title_tag" $siteTitle }}
+  {{ if $title_tag_home_text }}
+    {{  $s.SetInMap "params" "title_tag" (printf "%s %s %s" $title_tag_home_text $title_tag_separator $site_title)  }}
+  {{ else }}
+    {{ $s.SetInMap "params" "title_tag" $site_title }}
+  {{ end }}
 {{ end }}
 
 {{/* Image

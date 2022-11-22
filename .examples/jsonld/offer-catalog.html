@@ -24,7 +24,7 @@
 
 {{ $s.SetInMap "offer" "@context" "https://schema.org" }}
 {{ $s.SetInMap "offer" "@type" "OfferCatalog" }}
-{{ $s.SetInMap "offer" "name" .siteTitle }}
+{{ $s.SetInMap "offer" "name" .site_title }}
 {{ $s.SetInMap "offer" "@id" site.Data.schema.id }}
 
 {{ $s.Set "list" slice }}

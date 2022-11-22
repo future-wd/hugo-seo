@@ -14,7 +14,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* add siteTitle to params ([0cabc2a](https://github.com/future-wd/hugo-seo/commit/0cabc2abf054ef4cec7ba75ff35bbb3a03b9425f))
+* add site_title to params ([0cabc2a](https://github.com/future-wd/hugo-seo/commit/0cabc2abf054ef4cec7ba75ff35bbb3a03b9425f))
 * change format ([338eacf](https://github.com/future-wd/hugo-seo/commit/338eacf41f4399568061891b759903911c9980ff))
 * change if to with ([1983782](https://github.com/future-wd/hugo-seo/commit/198378284da8f93a32192ff64a72a820942126a3))
 * change name and format ([40b96cc](https://github.com/future-wd/hugo-seo/commit/40b96ccc56f1607ffc3e4d799cd9dcea54bc3b8a))
