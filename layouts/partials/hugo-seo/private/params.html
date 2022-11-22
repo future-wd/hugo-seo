@@ -140,15 +140,18 @@
 {{ end }}
 	
 {{/* check if image is a page or global resource
-  assign the permalink to $img and assign resource to $imgRes */}}
+  assign the permalink to $img and assign resource to $imgRes 
+  *** only process if string to avoid netlify issue*/}}
 {{ $imgRes := false }}
-{{ with resources.GetMatch $img }}
-  {{ $imgRes = . }}
-  {{ $img = .RelPermalink  }}
-{{ else }}
-  {{ with .Resources.GetMatch $img }}
+{{ if eq (printf "%T" $img) "string" }}
+  {{ with resources.GetMatch $img }}
     {{ $imgRes = . }}
     {{ $img = .RelPermalink  }}
+  {{ else }}
+    {{ with .Resources.GetMatch $img }}
+      {{ $imgRes = . }}
+      {{ $img = .RelPermalink  }}
+    {{ end }}
   {{ end }}
 {{ end }}
 
