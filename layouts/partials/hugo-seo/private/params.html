@@ -16,6 +16,8 @@
 {{ $params = merge $params $general }}
 {{ $images := partial "hugo-seo/private/params/images" $params }}
 {{ $params = merge $params $images }}
+{{ $meta := partial "hugo-seo/private/params/meta" $params }}
+{{ $params = merge $params $meta }}
 {{ $twitter := partial "hugo-seo/private/params/twitter" $params }}
 {{ $params = merge $params $twitter }}
 {{ $og := partial "hugo-seo/private/params/og" $params }}
