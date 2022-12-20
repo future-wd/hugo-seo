@@ -1,0 +1,32 @@
+{{/* currently Twitter card only
+	---------------------------- */}}
+
+{{ $s := newScratch }}
+{{ $s.Set "params" dict  }}
+{{ $c := site.Params.seo }}
+
+{{ with .img }}
+	{{/* Most of the time we should have an image */}}
+	{{  $s.SetInMap "params" "twitter_card" "summary_large_image"  }}
+{{ else }}
+	{{/* For edge cases without: */}}
+	{{  $s.SetInMap "params" "twitter_card" "summary"  }}
+{{ end }}
+
+{{/* We check the site config sports a Social.twitter and use as handle */}}
+{{  with site.Social.twitter  }}
+	{{  $s.SetInMap "params" "twitter_site" (printf "@%s" .)  }}
+{{  end  }}
+
+{{/* We check the page params have author.twitter and use as handle */}}
+{{ with .ctx.Params.authors }}
+  {{ with index . 0 }}
+    {{  $s.SetInMap "params" "twitter_creator" (printf "@%s" .)  }}
+  {{ end }}
+{{ else }}
+  {{  with .ctx.Params.author.twitter  }}
+    {{  $s.SetInMap "params" "twitter_creator" (printf "@%s" .)  }}
+  {{ end }}
+{{ end }}
+
+{{ return $s.Get "params" }}

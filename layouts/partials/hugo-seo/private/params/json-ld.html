@@ -1,0 +1,37 @@
+{{/* currently jsonld specific
+	----------------------------- */}}
+{{ $s := newScratch }}
+{{ $s.Set "params" dict  }}
+{{ $c := site.Params.seo }}
+
+{{/* add jsonld type of article if match */}}
+{{  if in $c.jsonld_article_types .Section  }}
+	{{  $s.SetInMap "params" "jsonld_type" "Article"  }}
+{{ else if (in $c.jsonld_news_article_types .Section)  }}
+	{{  $s.SetInMap "params" "jsonld_type" "NewsArticle"  }}
+{{ else if (in $c.jsonldBlogPostingTypes .Section)  }}
+	{{  $s.SetInMap "params" "jsonld_type" "BlogPosting"  }}
+{{ end }}
+
+{{/* remove /n from end of plainified content */}}
+{{/* $article_body := trim (.ctx.Content | plainify ) "\n" */}}
+{{/*  $s.SetInMap "params" "article_body" $article_body  */}}
+
+{{/* article body plain text */}}
+{{ $article_body := trim .ctx.Plain "\n" }}
+{{  $s.SetInMap "params" "article_body" $article_body }}
+
+{{ $authors := slice }}
+{{ with .ctx.Params.authors }}
+  {{ $authors = . }}
+{{ else }}
+  {{ with .ctx.Params.author }}
+    {{ $authors = (slice .) }}
+  {{ end }}
+{{ end }}
+
+{{ with $authors }}
+{{ $s.SetInMap "params" "authors" .  }}
+{{ end }}
+
+{{ return $s.Get "params" }}

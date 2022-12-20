@@ -10,7 +10,6 @@ seo:
   title_tag:
     separator: "|"
     home_text: "" # prepend this text on home page
-  siteName: # site title override (for og/twitter)
   og_article_types: [post, posts, blog, news, article, articles, event, events, course, courses]
   jsonld_article_types: [article, articles]
   jsonld_news_article_types: [news, updates]

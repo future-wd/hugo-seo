@@ -2,6 +2,8 @@
 
 ADD BETTER ERROR HANDLING TO IMAGES IN PARAMS!!!
 
+check breadcrumb generation
+
 <https://support.google.com/webmasters/answer/6062598>
 
 related - dont set it up? but if there is no results, manually add related pages via logic

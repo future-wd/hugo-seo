@@ -1,4 +1,5 @@
 {{ $s := newScratch }}
+{{ $s.Set "params" dict  }}
 {{ $s.Set "og" slice  }}
 
 {{ $s.Add "og" (dict "property" "og:url" "content" .canonical) }}
@@ -7,7 +8,7 @@
 {{ $s.Add "og" (dict "property" "og:site_name" "content" .site_title) }}
 {{ $s.Add "og" (dict "property" "og:type" "content" .og_type) }}
 
-{{ with .page.Section }}
+{{ with .ctx.Section }}
 {{ $s.Add "og" (dict "property" "og:section" "content" .) }}
 {{ end }}
 
@@ -55,9 +56,9 @@
 
 
 {{/* these are article tags */}}
-{{ if and (eq .og_type "article") .page.IsPage }}
+{{ if and (eq .og_type "article") .ctx.IsPage }}
 
-  {{ with .page.Section }}
+  {{ with .ctx.Section }}
     {{ $s.Add "og" (dict "property" "article:section" "content" . ) }}
   {{ end }}
   {{ with .date_modified }}

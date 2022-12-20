@@ -2,7 +2,7 @@
 {{ $s.Set "itemList" slice }}
 {{ $s.Set "itemCount" 1 }}
 
-{{ partial "hugo-seo/private/utils/breadcrumb-recursive" (dict "scratch" $s "parent" .page.Parent) }}
+{{ partial "hugo-seo/private/utils/breadcrumb-recursive" (dict "scratch" $s "parent" .ctx.Parent) }}
 
 {{ $s.Add  "itemList" (slice (dict 
   "@type" "ListItem"
@@ -10,4 +10,4 @@
   "position" ($s.Get "itemCount")
 )) }}
 
-{{ return $s.Get "itemList" }}
+{{ return dict "breadcrumbs" ($s.Get "itemList") }}

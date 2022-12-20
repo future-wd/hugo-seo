@@ -13,7 +13,7 @@
 {{ $s.SetInMap "article" "image" . }}
 {{ end }}
 
-{{ with .page.WordCount }}
+{{ with .ctx.WordCount }}
   {{ $s.SetInMap "article" "wordcount" . }}
 {{ end }}
 
