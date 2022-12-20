@@ -11,8 +11,8 @@
 
  */}}
 {{- /* get params from context */ -}}
-{{- $params := partial "hugo-seo/private/params.html" . -}}
+{{- $params := partialCached "hugo-seo/private/params.html" . .Page -}}
 {{- /* generate tag data based on params and config */ -}}
-{{- $tags := partial "hugo-seo/private/tags/index.html" $params -}}
+{{- $tags := partialCached "hugo-seo/private/tags/index.html" $params .Page -}}
 {{- /* print tags */ -}}
-{{- partial "hugo-seo/private/print/index.html" $tags -}}
+{{- partialCached "hugo-seo/private/print/index.html" $tags .Page -}}

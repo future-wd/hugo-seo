@@ -3,11 +3,11 @@
 
 
 {{ $s.SetInMap "article" "@context"  "https://schema.org" }}
-{{ $s.SetInMap "article" "@type"  .jsonldType }}
+{{ $s.SetInMap "article" "@type"  .jsonld_type }}
 {{ $s.SetInMap "article" "url" .canonical }}
 {{ $s.SetInMap "article" "headline" .title }}
 {{ $s.SetInMap "article" "description" .description }}
-{{ $s.SetInMap "article" "articleBody" .articleBody }}
+{{ $s.SetInMap "article" "article_body" .article_body }}
 
 {{ with .image }}
 {{ $s.SetInMap "article" "image" . }}
@@ -17,12 +17,12 @@
   {{ $s.SetInMap "article" "wordcount" . }}
 {{ end }}
 
-{{ with .datePublished }}
-  {{ $s.SetInMap "article" "datePublished" . }}
+{{ with .date_published }}
+  {{ $s.SetInMap "article" "date_published" . }}
 {{ end }}
 
-{{ with .dateModified }}
-  {{ $s.SetInMap "article" "dateModified" . }}
+{{ with .date_modified }}
+  {{ $s.SetInMap "article" "date_modified" . }}
 {{ end }}
 
 {{ with .authors }}

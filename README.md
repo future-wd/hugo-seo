@@ -74,9 +74,9 @@ params:
       separator: "|"
       home_text: "" # prepend this text on home page
     siteName: # site title override (for og/twitter)
-    ogArticleTypes: [post, posts, blog, news, article, articles, event, events]
-    jsonldArticleTypes: [article, articles, event, events]
-    jsonldNewsArticleTypes: [news]
+    og_article_types: [post, posts, blog, news, article, articles, event, events]
+    jsonld_article_types: [article, articles, event, events]
+    jsonld_news_article_types: [news]
     jsonldBlogPostingTypes: [post, posts, blog]
     image: # set default here, page override can be set. 
     private: false # makes the whole site private, see below.
@@ -112,7 +112,7 @@ You can change the separator from "|" to another character e.g. "-"
 
 You can set a site title overide for use in the open graph tag.
 
-### params.seo.ogArticleTypes
+### params.seo.og_article_types
 
 The types in the array will be recognised as articles for opengraph tag generation.
 
@@ -213,31 +213,31 @@ Variable are in camelCase form if matching a json-ld property. Otherwise they ta
 | ----------------- | ----------- | ------ |
 | .page             | access to the current page context | .Page |
 | site              | hugo function for accessing .Site context | reference only |
-| .datePublished    | ISO datestamp publish time | .PublishDate, .Date |
-| .dateModified     | ISO datestamp of modified time |.Lastmod |
+| .date_published    | ISO datestamp publish time | .PublishDate, .Date |
+| .date_modified     | ISO datestamp of modified time |.Lastmod |
 | .description      | Page description plain text | .Params.seo.description, .Description, .Summary, site.Params.seo.description, site.Params.description |
 | .title            | Page title | .Params.seo.title, .Title |
 | .site_title        | Site Title | site.Title, site.Params.title |
 | .image            | absURL of page image | .Params.seo.image, index (.Params.images) 0, .Params.image, site.Params.seo.image (static file, page resource or global resource) |
-| .imageHeight      | height of image | image variable above |
-| .imageWidth       | width of image | image variable above |
-| .imageType        | mime type of image if page or global resource | image variable above |
+| .image_height      | height of image | image variable above |
+| .image_width       | width of image | image variable above |
+| .image_type        | mime type of image if page or global resource | image variable above |
 | .private          | boolean | .Params.seo.private, site.Params.seo.private |
 | .locale           | site language code | .Lang |
 | .canonical        | canonical absUrl  | page: .Params.seo.canonical, .Permalink |
 | -                 | -                 | node: .Paginator.URL |
 | .next             | next page absURL if node | .Paginator.Next.URL |
 | .prev             | prev page absURL if node | .Paginator.Prev.URL |
-| .alternativeOutputFormats | alternative output formats array | .AlternativeOutputFormats |
+| .alternative_output_formats | alternative output formats array | .alternative_output_formats |
 | .twitter_card     | summary or summary_large_image | if image has been set |
 | .twitter_site     | site twitter handle (with @) | site.Social.twitter (no @) |
 | .twitter_creator  | page author twitter handle (with @) | .twitter in .author or first .authors (no @) |
-| .ogType           | og page type | website or if .Section is in ogArticleTypes, article |
+| .og_type           | og page type | website or if .Section is in og_article_types, article |
 | .audio            | page audio clip absURL | .Params.audio |
 | .video            | page video clip absURL | index (.Params.videos) 0, .Params.video |
 | .see_also         | array of related pages | first 6 related pages, then first 6 pages by date in same section |
 | .locale_alternate | array of translations of page | .Lang for each of .Translations  |
-| .jsonldType       | type of page for jsonld | if in .Section: jsonldArticleTypes > article, jsonldNewsArticleTypes > newsArticle, jsonldBlogPostingTypes > blogPosting |
-| .articleBody      | page body plain text | .Plain |
+| .jsonld_type       | type of page for jsonld | if in .Section: jsonld_article_types > article, jsonld_news_article_types > newsArticle, jsonldBlogPostingTypes > blogPosting |
+| .article_body      | page body plain text | .Plain |
 | .authors          | slice of authors | .Params.authors, .Params.author (provide name and url, optionally twitter) |
 | .breadcrumbs      | breadcrumbs array | current page and parents |

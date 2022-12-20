@@ -5,7 +5,7 @@
 {{ $s.Add "og" (dict "property" "og:title" "content" .title) }}
 {{ $s.Add "og" (dict "property" "og:locale" "content" .locale) }}
 {{ $s.Add "og" (dict "property" "og:site_name" "content" .site_title) }}
-{{ $s.Add "og" (dict "property" "og:type" "content" .ogType) }}
+{{ $s.Add "og" (dict "property" "og:type" "content" .og_type) }}
 
 {{ with .page.Section }}
 {{ $s.Add "og" (dict "property" "og:section" "content" .) }}
@@ -18,14 +18,14 @@
 {{ with .image }}
 {{ $s.Add "og" (dict "property" "og:image" "content" . ) }}
   {{/* add image height/width so fb image displays on first share */}}
-  {{ with $.imageWidth }}
+  {{ with $.image_width }}
     {{ $s.Add "og" (dict "property" "og:image:width" "content" . ) }}
   {{ end }}
-  {{ with $.imageHeight }}
+  {{ with $.image_height }}
     {{ $s.Add "og" (dict "property" "og:image:height" "content" . ) }}
   {{ end }}
   {{/* add image type if page resource */}}
-  {{ with $.imageType }}
+  {{ with $.image_type }}
     {{ $s.Add "og" (dict "property" "og:image:type" "content" . ) }}
   {{ end }}
 {{ end }}
@@ -55,15 +55,15 @@
 
 
 {{/* these are article tags */}}
-{{ if and (eq .ogType "article") .page.IsPage }}
+{{ if and (eq .og_type "article") .page.IsPage }}
 
   {{ with .page.Section }}
     {{ $s.Add "og" (dict "property" "article:section" "content" . ) }}
   {{ end }}
-  {{ with .dateModified }}
+  {{ with .date_modified }}
     {{ $s.Add "og" (dict "property" "article:published_time" "content" . ) }}
   {{ end }}
-  {{ with .dateModified }}
+  {{ with .date_modified }}
     {{ $s.Add "og" (dict "property"  "article:modified_time" "content" . ) }}
   {{ end }}
 

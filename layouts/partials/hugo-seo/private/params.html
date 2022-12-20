@@ -28,12 +28,12 @@
 	----------------------------- */}}
 
 {{  if not .PublishDate.IsZero  }}
-{{  $s.SetInMap "params" "datePublished" (.PublishDate.Format "2006-01-02T15:04:05-07:00")  }}
+{{  $s.SetInMap "params" "date_published" (.PublishDate.Format "2006-01-02T15:04:05-07:00")  }}
 {{  else if not .Date.IsZero  }}
-{{  $s.SetInMap "params" "datePublished" (.Date.Format "2006-01-02T15:04:05-07:00")  }}
+{{  $s.SetInMap "params" "date_published" (.Date.Format "2006-01-02T15:04:05-07:00")  }}
 {{  end  }}
 {{  if not .Lastmod.IsZero  }}
-{{  $s.SetInMap "params" "dateModified" (.Lastmod.Format "2006-01-02T15:04:05-07:00")  }}
+{{  $s.SetInMap "params" "date_modified" (.Lastmod.Format "2006-01-02T15:04:05-07:00")  }}
 {{  end  }}
 
 {{/* Description
@@ -141,17 +141,17 @@
 
 
 {{/* check if image is a page or global resource
-  assign the permalink to $img and assign resource to $imgRes 
+  assign the permalink to $img and assign resource to $img_res 
   with $img ensures that an image is present
   */}}
-{{ $imgRes := false }}
+{{ $img_res := false }}
 {{ with $img }}
   {{ with resources.GetMatch . }}
-    {{ $imgRes = . }}
+    {{ $img_res = . }}
     {{ $img = .RelPermalink  }}
   {{ else }}
     {{ with $.Resources.GetMatch .}}
-      {{ $imgRes = . }}
+      {{ $img_res = . }}
       {{ $img = .RelPermalink  }}
     {{ end }}
   {{ end }}
@@ -171,14 +171,14 @@
 
 {{ with $img }}
 	{{ $s.SetInMap "params" "image" ( . | absURL) }}
-  {{ if $imgRes.Height }}
-    {{ $s.SetInMap "params" "imageHeight" ( $imgRes.Height | string) }}
-    {{ $s.SetInMap "params" "imageWidth" ( $imgRes.Width | string) }}
-    {{ $s.SetInMap "params" "imageType" $imgRes.MediaType }}
+  {{ if $img_res.Height }}
+    {{ $s.SetInMap "params" "image_height" ( $img_res.Height | string) }}
+    {{ $s.SetInMap "params" "image_width" ( $img_res.Width | string) }}
+    {{ $s.SetInMap "params" "image_type" $img_res.MediaType }}
   {{ else }}
     {{ $data := imageConfig $img }} 
-    {{ $s.SetInMap "params" "imageHeight" ($data.Height | string) }}
-    {{ $s.SetInMap "params" "imageWidth"  ($data.Height | string) }}
+    {{ $s.SetInMap "params" "image_height" ($data.Height | string) }}
+    {{ $s.SetInMap "params" "image_width"  ($data.Height | string) }}
   {{ end }}
 {{ end }}
 
@@ -215,16 +215,16 @@
 {{ else }}
 {{/* standard pages */}}
   {{ with .Params.seo.canonical }}
-    {{  $s.SetInMap "params" "canonical" (. | absURL)  }}
+    {{ $s.SetInMap "params" "canonical" (. | absURL) }}
   {{ else }}
-    {{  $s.SetInMap "params" "canonical" .Permalink  }}
+    {{ $s.SetInMap "params" "canonical" .Permalink }}
   {{ end }}
 {{ end }}
 
 {{/*  currently meta only
 	---------------------------- */}}
 {{ with .AlternativeOutputFormats }}
-  {{ $s.SetInMap "params" "alternativeOutputFormats" . }}
+  {{ $s.SetInMap "params" "alternative_output_formats" . }}
 {{ end }}
 
 
@@ -261,10 +261,10 @@
 	----------------------------- */}}
 
 {{/* choose between website and article for OG */}}
-{{  if in $config.ogArticleTypes .Section  }}
-  {{  $s.SetInMap "params" "ogType" "article"  }}
+{{  if in $config.og_article_types .Section  }}
+  {{  $s.SetInMap "params" "og_type" "article"  }}
 {{ else }}
-  {{  $s.SetInMap "params" "ogType" "website" }}
+  {{  $s.SetInMap "params" "og_type" "website" }}
 {{ end }}
 
 {{- with .Params.audio }}
@@ -286,11 +286,11 @@
 {{ $related = where site.RegularPages.ByDate "Section" .Section | first 6 }}
 {{ end }}
 {{ with $related }}
-  {{ $relatedArray := slice }}
+  {{ $related_array := slice }}
   {{ range . }}
-    {{ $relatedArray = $relatedArray | append .Permalink }}
+    {{ $related_array = $related_array | append .Permalink }}
   {{ end }}
-  {{ $s.SetInMap "params" "see_also" $relatedArray }}
+  {{ $s.SetInMap "params" "see_also" $related_array }}
 {{ end }}
 
 
@@ -306,21 +306,21 @@
 	----------------------------- */}}
 
 {{/* add jsonld type of article if match */}}
-{{  if in $config.jsonldArticleTypes .Section  }}
-	{{  $s.SetInMap "params" "jsonldType" "Article"  }}
-{{ else if (in $config.jsonldNewsArticleTypes .Section)  }}
-	{{  $s.SetInMap "params" "jsonldType" "NewsArticle"  }}
+{{  if in $config.jsonld_article_types .Section  }}
+	{{  $s.SetInMap "params" "jsonld_type" "Article"  }}
+{{ else if (in $config.jsonld_news_article_types .Section)  }}
+	{{  $s.SetInMap "params" "jsonld_type" "NewsArticle"  }}
 {{ else if (in $config.jsonldBlogPostingTypes .Section)  }}
-	{{  $s.SetInMap "params" "jsonldType" "BlogPosting"  }}
+	{{  $s.SetInMap "params" "jsonld_type" "BlogPosting"  }}
 {{ end }}
 
 {{/* remove /n from end of plainified content */}}
-{{/* $articleBody := trim (.Content | plainify ) "\n" */}}
-{{/*  $s.SetInMap "params" "articleBody" $articleBody  */}}
+{{/* $article_body := trim (.Content | plainify ) "\n" */}}
+{{/*  $s.SetInMap "params" "article_body" $article_body  */}}
 
 {{/* article body plain text */}}
-{{ $articleBody := trim .Plain "\n" }}
-{{  $s.SetInMap "params" "articleBody" $articleBody }}
+{{ $article_body := trim .Plain "\n" }}
+{{  $s.SetInMap "params" "article_body" $article_body }}
 
 {{ $authors := slice }}
 {{ with .Params.authors }}
