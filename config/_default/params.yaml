@@ -13,7 +13,7 @@ seo:
   og_article_types: [post, posts, blog, news, article, articles, event, events, course, courses]
   jsonld_article_types: [article, articles]
   jsonld_news_article_types: [news, updates]
-  jsonldBlogPostingTypes: [post, posts, blog]
+  jsonld_blog_posting_types: [post, posts, blog]
   # page or site
   image: # set default here, page override can be set. 
   private: false # set here or per page to modify robots meta, remove sitemap, robots and rss listing for page(s)
