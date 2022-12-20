@@ -77,7 +77,7 @@ params:
     og_article_types: [post, posts, blog, news, article, articles, event, events]
     jsonld_article_types: [article, articles, event, events]
     jsonld_news_article_types: [news]
-    jsonldBlogPostingTypes: [post, posts, blog]
+    jsonld_blog_posting_types: [post, posts, blog]
     image: # set default here, page override can be set. 
     private: false # makes the whole site private, see below.
 ```
@@ -237,7 +237,7 @@ Variable are in camelCase form if matching a json-ld property. Otherwise they ta
 | .video            | page video clip absURL | index (.Params.videos) 0, .Params.video |
 | .see_also         | array of related pages | first 6 related pages, then first 6 pages by date in same section |
 | .locale_alternate | array of translations of page | .Lang for each of .Translations  |
-| .jsonld_type       | type of page for jsonld | if in .Section: jsonld_article_types > article, jsonld_news_article_types > newsArticle, jsonldBlogPostingTypes > blogPosting |
+| .jsonld_type       | type of page for jsonld | if in .Section: jsonld_article_types > article, jsonld_news_article_types > newsArticle, jsonld_blog_posting_types > blogPosting |
 | .article_body      | page body plain text | .Plain |
 | .authors          | slice of authors | .Params.authors, .Params.author (provide name and url, optionally twitter) |
 | .breadcrumbs      | breadcrumbs array | current page and parents |

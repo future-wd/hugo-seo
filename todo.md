@@ -2,7 +2,7 @@
 
 ADD BETTER ERROR HANDLING TO IMAGES IN PARAMS!!!
 
-check breadcrumb generation
+document additional partial
 
 <https://support.google.com/webmasters/answer/6062598>
 
