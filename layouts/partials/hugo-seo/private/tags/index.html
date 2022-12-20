@@ -24,7 +24,7 @@
 {{/* add json-ld code blocks */}}
 {{/* only display article for .json article types and not list pages, if enabled */}}
 {{ if eq (.ctx.Param "seo.generate.jsonld.article") true }}
-  {{ if and .jsonld_type (not .ctx.IsNode) }}
+  {{ if .jsonld_type }}
     {{ $s.Add "jsonld" (partial "hugo-seo/private/tags/jsonld-article" .) }}
   {{ end }}
 {{ end }}
