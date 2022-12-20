@@ -4,7 +4,7 @@ ADD BETTER ERROR HANDLING TO IMAGES IN PARAMS!!!
 
 <https://support.google.com/webmasters/answer/6062598>
 
-
+related - dont set it up? but if there is no results, manually add related pages via logic
 
 test og related on a site with taxonomies!
 
