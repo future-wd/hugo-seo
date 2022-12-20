@@ -17,10 +17,10 @@
     {{- partial "hugo-seo/private/print/meta" . -}}
   {{- end -}}
 {{- else -}}
-  {{- $array := slice -}}
-  {{- range $key, $value := . -}}
-    {{- $array = $array | append (printf `%s="%s"` $key $value) -}}
-  {{- end -}}
-{{ printf "<meta %s>" (delimit $array " ") | safeHTML }}
+  {{ if .property }}
+    {{ printf `<meta property="%s" content="%s">` .property .content | safeHTML }}
+  {{ else if .name }}
+    {{ printf `<meta name="%s" content="%s">` .name .content | safeHTML }}
+  {{ end }}
 {{- end -}}
 
