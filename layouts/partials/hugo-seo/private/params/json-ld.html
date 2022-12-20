@@ -5,13 +5,15 @@
 {{ $c := site.Params.seo }}
 
 {{/* add jsonld type of article if match */}}
-{{  if in $c.jsonld_article_types .Section  }}
-	{{  $s.SetInMap "params" "jsonld_type" "Article"  }}
-{{ else if (in $c.jsonld_news_article_types .Section)  }}
-	{{  $s.SetInMap "params" "jsonld_type" "NewsArticle"  }}
-{{ else if (in $c.jsonldBlogPostingTypes .Section)  }}
-	{{  $s.SetInMap "params" "jsonld_type" "BlogPosting"  }}
-{{ end }}
+{{ if not .ctx.IsNode }}
+  {{ if in $c.jsonld_article_types .ctx.Section }}
+    {{ $s.SetInMap "params" "jsonld_type" "Article" }}
+  {{ else if (in $c.jsonld_news_article_types .ctx.Section) }}
+    {{ $s.SetInMap "params" "jsonld_type" "NewsArticle" }}
+  {{ else if (in $c.jsonld_blog_posting_types .ctx.Section) }}
+    {{ $s.SetInMap "params" "jsonld_type" "BlogPosting" }}
+  {{ end }}
+{{ end }} 
 
 {{/* remove /n from end of plainified content */}}
 {{/* $article_body := trim (.ctx.Content | plainify ) "\n" */}}
