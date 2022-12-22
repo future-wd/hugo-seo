@@ -6,9 +6,7 @@
 	
 	@access public
 
-  @context
-    .ctx - page context
-    ...params - sanitized params
+  @context - page context
 
   @returns
     dict which can be parsed as JSON
@@ -18,12 +16,12 @@
 {{ $s := newScratch }}
 {{ $s.Set "itemList" slice }}
 {{ $s.Set "itemCount" 1 }}
-{{ with .ctx.Parent }}
+{{ with .Parent }}
   {{ partial "hugo-seo/private/params/breadcrumbs/parent-recursive" (dict "scratch" $s "parent" .) }}
 {{ end }}
 {{ $s.Add  "itemList" (slice (dict 
   "@type" "ListItem"
-  "name" .title
+  "name" .Title
   "position" ($s.Get "itemCount")
 )) }}
 

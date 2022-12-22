@@ -1,40 +1,36 @@
 {{/* currently jsonld specific
 	----------------------------- */}}
-{{ $s := newScratch }}
-{{ $s.Set "params" dict  }}
-{{ $c := site.Params.seo }}
+
+{{ with .ctx }}
+
 
 {{/* add jsonld type of article if match */}}
-{{ if not .ctx.IsNode }}
-  {{ if in $c.jsonld_article_types .ctx.Section }}
-    {{ $s.SetInMap "params" "jsonld_type" "Article" }}
-  {{ else if (in $c.jsonld_news_article_types .ctx.Section) }}
-    {{ $s.SetInMap "params" "jsonld_type" "NewsArticle" }}
-  {{ else if (in $c.jsonld_blog_posting_types .ctx.Section) }}
-    {{ $s.SetInMap "params" "jsonld_type" "BlogPosting" }}
+{{ if not .IsNode }}
+  {{ if in $.c.jsonld_article_types .Section }}
+    {{ $.s.SetInMap "params" "jsonld_type" "Article" }}
+  {{ else if (in $.c.jsonld_news_article_types .Section) }}
+    {{ $.s.SetInMap "params" "jsonld_type" "NewsArticle" }}
+  {{ else if (in $.c.jsonld_blog_posting_types .Section) }}
+    {{ $.s.SetInMap "params" "jsonld_type" "BlogPosting" }}
   {{ end }}
 {{ end }} 
 
 {{/* remove /n from end of plainified content */}}
-{{/* $article_body := trim (.ctx.Content | plainify ) "\n" */}}
-{{/*  $s.SetInMap "params" "article_body" $article_body  */}}
-
-{{/* article body plain text */}}
-{{ $article_body := trim .ctx.Plain "\n" }}
-{{  $s.SetInMap "params" "article_body" $article_body }}
+{{ $.s.SetInMap "params" "article_body" (trim .Plain "\n") }}
 
 {{ $authors := slice }}
-{{ with .ctx.Params.authors }}
+{{ with .Params.authors }}
   {{ $authors = . }}
 {{ else }}
-  {{ with .ctx.Params.author }}
+  {{ with .Params.author }}
     {{ $authors = (slice .) }}
   {{ end }}
 {{ end }}
 
 {{ with $authors }}
-{{ $s.SetInMap "params" "authors" .  }}
+{{ $.s.SetInMap "params" "authors" .  }}
 {{ end }}
 
-{{ $breadcrumbs := partial "hugo-seo/private/params/breadcrumbs/create-breadcrumbs" . }}
-{{ return merge ($s.Get "params") $breadcrumbs }}
+{{ $.s.SetInMap "params" "breadcrumbs" (partial "hugo-seo/private/params/breadcrumbs/create-breadcrumbs" $.ctx ) }}
+
+{{ end }}

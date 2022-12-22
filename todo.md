@@ -6,11 +6,11 @@ document additional partial
 
 <https://support.google.com/webmasters/answer/6062598>
 
-related - dont set it up? but if there is no results, manually add related pages via logic
+push breadcrumb changes to HYAS
 
 test og related on a site with taxonomies!
 
-option to add meta tags or json-ld
+add add-tags example for the two meta tag types
 
 create example partial with logic for per page, per .Type, per .Section or general
 

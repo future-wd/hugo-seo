@@ -1,12 +1,10 @@
 {{/*  currently meta only
 	---------------------------- */}}
 
-{{ $c := site.Params.seo }}
-{{ $s := newScratch }}
-{{ $s.Set "params" dict  }}
+{{ with .ctx }}
 
 {{ with .AlternativeOutputFormats }}
-  {{ $s.SetInMap "params" "alternative_output_formats" . }}
+  {{ $.s.SetInMap "params" "alternative_output_formats" . }}
 {{ end }}
 
-{{ return $s.Get "params" }}
+{{ end }}
