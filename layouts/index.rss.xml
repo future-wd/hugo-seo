@@ -6,13 +6,13 @@
 {{- end -}}
 {{- /* dont output anything if there are no public pages  */ -}}
 {{- if ne $public 0 -}}
-{{- $pctx := . -}}
-{{- if .IsHome -}}{{ $pctx = .Site }}{{- end -}}
+{{- $ctx := . -}}
+{{- if .IsHome -}}{{ $ctx = .Site }}{{- end -}}
 {{- $pages := slice -}}
 {{- if or $.IsHome $.IsSection -}}
-{{- $pages = $pctx.RegularPages -}}
+{{- $pages = $ctx.RegularPages -}}
 {{- else -}}
-{{- $pages = $pctx.Pages -}}
+{{- $pages = $ctx.Pages -}}
 {{- end -}}
 {{- $limit := .Site.Config.Services.RSS.Limit -}}
 {{- if ge $limit 1 -}}
