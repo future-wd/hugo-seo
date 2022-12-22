@@ -1,0 +1,35 @@
+{{/* 
+  parent-recursive.html
+	Creates json ready data for each level of parent page and
+	
+	@author @sean-au
+	
+	@access private
+
+  @context
+    .parent - .Parent context of child page
+    .scratch - newScratch context of child page
+
+  @returns
+    data is fed into child's partial scoped scratch via .scratch param
+
+	@example
+    {{ $s := newScratch }}
+    {{ with .Parent }}
+      {{ partial "hugo-seo/private/params/breadcrumbs/parent-recursive" (dict "scratch" $s "parent" .) }}
+    {{ end }}
+ */}}
+{{ with .parent }}
+  {{ with .Parent }}
+    {{ partial "hugo-seo/private/params/breadcrumbs/parent-recursive" (dict "scratch" $.scratch "parent" . ) }}
+  {{ end }}
+  {{ $title := .Params.seo.title | default .Title }}
+  {{- $.scratch.Add  "itemList" (slice (dict 
+    "@type" "ListItem"
+    "item" .Permalink 
+    "name" $title
+    "position" ($.scratch.Get "itemCount")
+  )) -}}
+  {{ $.scratch.Add "itemCount" 1 }}
+{{ end }}
+

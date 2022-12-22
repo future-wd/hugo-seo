@@ -1,0 +1,30 @@
+{{/* 
+  create-breadcrumbs.html
+	Created json ready breadcrumb data for current page, and calls parent partial if parent page exists.
+	
+	@author @sean-au
+	
+	@access public
+
+  @context
+    .ctx - page context
+    ...params - sanitized params
+
+  @returns
+    dict which can be parsed as JSON
+
+	@example {{ $breadcrumbs := partial "hugo-seo/private/params/breadcrumbs/create-breadcrumbs" . }}
+ */}}
+{{ $s := newScratch }}
+{{ $s.Set "itemList" slice }}
+{{ $s.Set "itemCount" 1 }}
+{{ with .ctx.Parent }}
+  {{ partial "hugo-seo/private/params/breadcrumbs/parent-recursive" (dict "scratch" $s "parent" .) }}
+{{ end }}
+{{ $s.Add  "itemList" (slice (dict 
+  "@type" "ListItem"
+  "name" .title
+  "position" ($s.Get "itemCount")
+)) }}
+
+{{ return dict "breadcrumbs" ($s.Get "itemList") }}

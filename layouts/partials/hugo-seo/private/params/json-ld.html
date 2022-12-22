@@ -36,4 +36,5 @@
 {{ $s.SetInMap "params" "authors" .  }}
 {{ end }}
 
-{{ return $s.Get "params" }}
+{{ $breadcrumbs := partial "hugo-seo/private/params/breadcrumbs/create-breadcrumbs" . }}
+{{ return merge ($s.Get "params") $breadcrumbs }}
