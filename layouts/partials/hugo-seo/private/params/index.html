@@ -25,8 +25,4 @@
 {{ $json_ld := partial "hugo-seo/private/params/json-ld" $params }}
 {{ $params = merge $params $json_ld }}
 
-{{/* must be at end of this file as depends on params defined higher up */}}
-{{ $breadcrumbs := partial "hugo-seo/private/utils/create-breadcrumbs" $params }}
-{{ $params = merge $params $breadcrumbs }}
-
 {{ return $params }}
