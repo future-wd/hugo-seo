@@ -27,8 +27,9 @@
 {{ end }}
 
 {{ $related := site.RegularPages.Related .ctx | first 6 }}
-{{ if not $related }}
-{{ $related = where site.RegularPages.ByDate "Section" .Section | first 6 }}
+{{ if not (eq (len $related) 6) }}
+  {{ $related_section := where site.RegularPages.ByDate "Section" .ctx.Section | first 6 }}
+  {{ $related = $related | append $related_section | first 6 }}
 {{ end }}
 {{ with $related }}
   {{ $related_array := slice }}
@@ -40,11 +41,11 @@
 
 
 {{ with .ctx.Translations }}
-{{ $locale_alternate = slice }}
-{{ range . }}
-  {{ $locale_alternate = $locale_alternate | append .Lang }}
-{{ end }}
-{{ $s.SetInMap "params" "locale_alternate" $locale_alternate }}
+  {{ $locale_alternate = slice }}
+  {{ range . }}
+    {{ $locale_alternate = $locale_alternate | append .ctx.Lang }}
+  {{ end }}
+  {{ $s.SetInMap "params" "locale_alternate" $locale_alternate }}
 {{ end }}
 
 {{ return $s.Get "params" }}
