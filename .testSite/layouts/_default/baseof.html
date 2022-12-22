@@ -4,11 +4,11 @@
     {{- partial "head.html" . -}}
   </head>
   <body>
-    {{- partial "header.html" . -}}
+    {{- partialCached "header.html" . -}}
     <main>
       {{- block "main" . }}{{- end }}
     </main>
-    {{- partial "footer.html" . -}}
-    {{- partial "script-footer.html" . -}}
+    {{- partialCached "footer.html" . -}}
+    {{- partialCached "script-footer.html" . -}}
   </body>
 </html>
