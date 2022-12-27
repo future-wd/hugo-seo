@@ -35,6 +35,8 @@ module:
     - path: github.com/future-wd/hugo-seo
 ```
 
+Get the module with `hugo mod get -u github.com/future-wd/hugo-seo`
+
 ## Usage
 
 Drop the following in your websites HEAD
@@ -68,18 +70,27 @@ params:
       twitter: true
       og: true
       jsonld:
-        article: true # only generated for .types configured in articleTypes or eventTypes
+        article: true
         breadcrumbs: true
     title_tag:
       separator: "|"
-      home_text: "" # prepend this text on home page
-    siteName: # site title override (for og/twitter)
-    og_article_types: [post, posts, blog, news, article, articles, event, events]
-    jsonld_article_types: [article, articles, event, events]
-    jsonld_news_article_types: [news]
+      home_text: "" # this text is added to the title tag on home page
+    og_article_types: [post, posts, blog, news, article, articles, event, events, course, courses]
+    jsonld_article_types: [article, articles]
+    jsonld_news_article_types: [news, updates]
     jsonld_blog_posting_types: [post, posts, blog]
+    # page or site
     image: # set default here, page override can be set. 
-    private: false # makes the whole site private, see below.
+    private: false # set here or per page to modify robots meta, remove sitemap, robots and rss listing for page(s)
+```
+
+## Page config (markdown)
+
+```yaml
+seo:
+  title: # page title override for title tag, og, twitter and json-ld
+  description: # override description/summary
+  canonical: # add page ref to override .Permalink for canonical
 ```
 
 ### Site Title
@@ -100,15 +111,15 @@ Here you an disable the generation of different tag types. This can also be set 
 
 The module generates a title tag. If you can't disable your theme's title, change the config to false.
 
-### params.seo.titleSeparator
+### params.seo.title_separator
 
-The home page has `<title>{ site title}</title>`
+The home page has `<title>{site title}</title>`
 
-Other pages have `<title>{page title} | { site title } </title>`
+Other pages have `<title>{page title} | { site title }</title>`
 
 You can change the separator from "|" to another character e.g. "-"
 
-### params.seo.siteName
+### params.seo.site_name
 
 You can set a site title overide for use in the open graph tag.
 
@@ -122,7 +133,7 @@ JSON-LD article has three different types, according to these arrays.
 
 ### params.seo.image
 
-Provide a default image should a page not have use. It can be a global resource (assets dir) or static file (static dir) path.
+Provide a default image should a page not have one. It can be a global resource (assets dir) or static file (static dir) path.
 
 #### params.seo.private
 
