@@ -1,0 +1,30 @@
+[build]
+  publish = "public"
+  functions = "functions"
+
+[build.environment]
+  NPM_FLAGS = "--omit=dev"
+  HUGO_VERSION = "0.109.0"
+
+[context.production]
+  command = "npm run build"
+
+[context.deploy-preview]
+  command = "npm run build -- -b $DEPLOY_PRIME_URL"
+
+[context.branch-deploy]
+  command = "npm run build -- -b $DEPLOY_PRIME_URL"
+
+[context.staging]
+  command = "npm run build -- -b $DEPLOY_PRIME_URL"
+
+[context.staging.environment]
+  HUGO_ENV = "staging"
+
+[dev]
+  framework = "#custom"
+  command = "npm run dev"
+  targetPort = 1313
+  port = 8888
+  publish = "public"
+  autoLaunch = false

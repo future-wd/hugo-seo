@@ -1,0 +1,50 @@
+
+{{ with .ctx }}
+
+{{/* currently open graph specific
+	----------------------------- */}}
+
+{{/* choose between website and article for OG */}}
+{{  if in $.c.og_article_types .Section  }}
+  {{  $.s.SetInMap "params" "og_type" "article"  }}
+{{ else }}
+  {{  $.s.SetInMap "params" "og_type" "website" }}
+{{ end }}
+
+{{- with .Params.audio }}
+  {{  $.s.SetInMap "params" "audio" ( . | absURL)  }}
+{{ end }}
+
+{{- with .Params.videos }}
+  {{- with index . 0 }}
+    {{  $.s.SetInMap "params" "video" ( . | absURL)  }} />
+  {{ end }}
+{{ end }}
+
+{{- with .Params.video }}
+  {{  $.s.SetInMap "params" "video" ( . | absURL)  }} />
+{{ end }}
+
+{{ $related := site.RegularPages.Related . | first 6 }}
+{{ if not (eq (len $related) 6) }}
+  {{ $related_section := where site.RegularPages.ByDate "Section" .Section | first 6 }}
+  {{ $related = $related | append $related_section | first 6 }}
+{{ end }}
+{{ with $related }}
+  {{ $related_array := slice }}
+  {{ range . }}
+    {{ $related_array = $related_array | append .Permalink }}
+  {{ end }}
+  {{ $.s.SetInMap "params" "see_also" $related_array }}
+{{ end }}
+
+
+{{ with .Translations }}
+  {{ $locale_alternate = slice }}
+  {{ range . }}
+    {{ $locale_alternate = $locale_alternate | append .Lang }}
+  {{ end }}
+  {{ $.s.SetInMap "params" "locale_alternate" $locale_alternate }}
+{{ end }}
+
+{{ end }}

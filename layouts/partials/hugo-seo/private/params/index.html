@@ -1,0 +1,27 @@
+{{/* 
+	Creates SEO params based on page params, and site config (cached)
+	
+	@author @sean-au
+	
+	@access private
+
+	@context Page 
+
+	@example - Go Template
+		{{ partial "hugo-seo/private/params" . }}
+*/}}
+{{ $s := newScratch }}
+{{ $s.SetInMap "params" "ctx" . }}
+{{ $s.SetInMap "params" "c" (partialCached "hugo-seo/private/params/config" $s ) }}
+
+{{ $params := $s.Get "params" }}
+{{ $p_ctx := dict "s" $s "params" $params "c" $params.c "ctx" $params.ctx }}
+
+{{ $general := partial "hugo-seo/private/params/general" $p_ctx }}
+{{ $images := partial "hugo-seo/private/params/images" $p_ctx }}
+{{ $meta := partial "hugo-seo/private/params/meta" $p_ctx }}
+{{ $twitter := partial "hugo-seo/private/params/twitter" $p_ctx }}
+{{ $og := partial "hugo-seo/private/params/og" $p_ctx }}
+{{ $json_ld := partial "hugo-seo/private/params/json-ld" $p_ctx }}
+
+{{ return $s.Get "params" }}

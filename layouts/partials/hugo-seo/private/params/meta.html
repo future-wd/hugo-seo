@@ -1,0 +1,10 @@
+{{/*  currently meta only
+	---------------------------- */}}
+
+{{ with .ctx }}
+
+{{ with .AlternativeOutputFormats }}
+  {{ $.s.SetInMap "params" "alternative_output_formats" . }}
+{{ end }}
+
+{{ end }}

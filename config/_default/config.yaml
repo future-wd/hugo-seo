@@ -2,16 +2,17 @@ enableRobotsTXT: true
 description: # used as fall back if not page description/summary is found
 title: # set the site title here, seo.title page/site config is an override
 
-# adds newer content older page's related content
-related:
-  includeNewer: true # add pages that are newer than the current one
-  threshold: 0 # anything is ok
-  toLower: true # lowercase params before comparing
-  indices:
-  - name: keywords
-    weight: 100
-  - name: categories
-    weight: 50
-  - name: tags
-    weight: 80
+# example config for related content
+# if < 6 pages are returned, this module will look for pages which are of the same .Section
+# related:
+#   includeNewer: true # add pages that are newer than the current one
+#   threshold: 0 # anything is ok
+#   toLower: true # lowercase params before comparing
+#   indices:
+#   - name: keywords
+#     weight: 100
+#   - name: categories
+#     weight: 50
+#   - name: tags
+#     weight: 80
 

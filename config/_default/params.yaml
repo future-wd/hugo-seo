@@ -1,5 +1,5 @@
 seo:
-  generate:
+  generate: # choose which tags are generated
     title: true
     meta: true
     twitter: true
@@ -9,17 +9,17 @@ seo:
       breadcrumbs: true
   title_tag:
     separator: "|"
-    home_text: "" # prepend this text on home page
-  siteName: # site title override (for og/twitter)
-  ogArticleTypes: [post, posts, blog, news, article, articles, event, events, course, courses]
-  jsonldArticleTypes: [article, articles]
-  jsonldNewsArticleTypes: [news, updates]
-  jsonldBlogPostingTypes: [post, posts, blog]
+    home_text: "" # this text is added to the title tag on home page
+  og_article_types: [post, posts, blog, news, article, articles, event, events, course, courses]
+  jsonld_article_types: [article, articles]
+  jsonld_news_article_types: [news, updates]
+  jsonld_blog_posting_types: [post, posts, blog]
   # page or site
   image: # set default here, page override can be set. 
   private: false # set here or per page to modify robots meta, remove sitemap, robots and rss listing for page(s)
-    
-  # page only
+
+# page only
+# seo:
   # title: # page title override for title tag, og and twitter
   # description: # override other descriptions for seo
   # canonical: # add page ref to override .Permalink for canonical

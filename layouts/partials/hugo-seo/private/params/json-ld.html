@@ -1,0 +1,36 @@
+{{/* currently jsonld specific
+	----------------------------- */}}
+
+{{ with .ctx }}
+
+
+{{/* add jsonld type of article if match */}}
+{{ if not .IsNode }}
+  {{ if in $.c.jsonld_article_types .Section }}
+    {{ $.s.SetInMap "params" "jsonld_type" "Article" }}
+  {{ else if (in $.c.jsonld_news_article_types .Section) }}
+    {{ $.s.SetInMap "params" "jsonld_type" "NewsArticle" }}
+  {{ else if (in $.c.jsonld_blog_posting_types .Section) }}
+    {{ $.s.SetInMap "params" "jsonld_type" "BlogPosting" }}
+  {{ end }}
+{{ end }} 
+
+{{/* remove /n from end of plainified content */}}
+{{ $.s.SetInMap "params" "article_body" (trim .Plain "\n") }}
+
+{{ $authors := slice }}
+{{ with .Params.authors }}
+  {{ $authors = . }}
+{{ else }}
+  {{ with .Params.author }}
+    {{ $authors = (slice .) }}
+  {{ end }}
+{{ end }}
+
+{{ with $authors }}
+{{ $.s.SetInMap "params" "authors" .  }}
+{{ end }}
+
+{{ $.s.SetInMap "params" "breadcrumbs" (partial "hugo-seo/private/params/json-breadcrumbs" $.ctx ) }}
+
+{{ end }}

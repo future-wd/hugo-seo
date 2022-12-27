@@ -9,27 +9,27 @@
 {{ end }}
 
 {{/* set meta tags for standard meta, og, twitter */}}
-{{ if eq (.page.Param "seo.generate.meta") true }}
+{{ if eq (.ctx.Param "seo.generate.meta") true }}
   {{ $s.Add "meta" (partial "hugo-seo/private/tags/meta" . ) }}
 {{ end }}
 
-{{ if eq (.page.Param "seo.generate.og") true }}
+{{ if eq (.ctx.Param "seo.generate.og") true }}
   {{ $s.Add "meta" (partial "hugo-seo/private/tags/og" . )  }}
 {{ end }}
 
-{{ if eq (.page.Param "seo.generate.twitter") true }}
+{{ if eq (.ctx.Param "seo.generate.twitter") true }}
   {{ $s.Add "meta" (partial "hugo-seo/private/tags/twitter" . ) }}
 {{ end }}
 
 {{/* add json-ld code blocks */}}
 {{/* only display article for .json article types and not list pages, if enabled */}}
-{{ if eq (.page.Param "seo.generate.jsonld.article") true }}
-  {{ if and .jsonldType (not .page.IsNode) }}
+{{ if eq (.ctx.Param "seo.generate.jsonld.article") true }}
+  {{ if .jsonld_type }}
     {{ $s.Add "jsonld" (partial "hugo-seo/private/tags/jsonld-article" .) }}
   {{ end }}
 {{ end }}
 
-{{ if eq (.page.Param "seo.generate.jsonld.breadcrumbs") true }}
+{{ if eq (.ctx.Param "seo.generate.jsonld.breadcrumbs") true }}
   {{ $s.Add "jsonld" (partial "hugo-seo/private/tags/jsonld-breadcrumbs" .) }}
 {{ end }}
 

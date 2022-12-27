@@ -15,7 +15,7 @@
 {{ $s.Add "meta" (dict "property" "prev" "content" . ) }}
 {{ end }}
 
-{{ with .alternativeOutputFormats }}
+{{ with .alternative_output_formats }}
   {{ range . }}
     {{ $s.Add "meta" (dict "rel" .Rel "type" .MediaType.Type "href" .Permalink "title" site.Title) }}
   {{ end }}

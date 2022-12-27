@@ -9,7 +9,7 @@
 {{ $s.Add "jsonld" (partial "hugo-seo/jsonld/offer-catalog" . ) }}
 
 {{/* conditional import examples */}}
-{{ if eq .page.Section "event" }}
+{{ if eq .ctx.Section "event" }}
   {{ $s.Add "jsonld" (partial "hugo-seo/jsonld/event" . ) }}
 {{ end }} 
 
