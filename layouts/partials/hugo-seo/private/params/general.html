@@ -75,8 +75,8 @@
   ---------------------------- 
 	We use the following logic
 	1. Every pages: `{$title} | {$site_title}`
-	2. Homepage: , `{$site_title}` or `{$title_tag_home_text} | {$site_title}` if available
-  "|" title seperator is configured @ site.title_tag.separator
+	2. Homepage: , `{$site_title}` or `{$site_title} | {$title_tag_home_text} ` if available
+  "|" title seperator is configured @ title_tag_separator
   *depreciated* site.Params.seo.titleSeparator */}}
 {{ if not .IsHome }}
 	{{/* 1. All except home page */}}
@@ -84,7 +84,7 @@
 {{ else }}
 	{{/* 2. Home page */}}
   {{ if $.params.c.title_tag_home_text }}
-    {{$.s.SetInMap "params" "title_tag" (printf "%s %s %s" $.params.c.title_tag_home_text $.params.c.title_tag_separator $site_title)  }}
+    {{$.s.SetInMap "params" "title_tag" (printf "%s %s %s" $site_title $.params.c.title_tag_separator $.params.c.title_tag_home_text)  }}
   {{ else }}
     {{$.s.SetInMap "params" "title_tag" $site_title }}
   {{ end }}
