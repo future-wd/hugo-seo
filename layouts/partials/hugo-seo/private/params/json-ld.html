@@ -31,6 +31,6 @@
 {{ $.s.SetInMap "params" "authors" .  }}
 {{ end }}
 
-{{ $.s.SetInMap "params" "breadcrumbs" (partial "hugo-seo/private/params/breadcrumbs/create-breadcrumbs" $.ctx ) }}
+{{ $.s.SetInMap "params" "breadcrumbs" (partial "hugo-seo/private/params/json-breadcrumbs" $.ctx ) }}
 
 {{ end }}
