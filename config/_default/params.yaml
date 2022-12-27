@@ -17,8 +17,9 @@ seo:
   # page or site
   image: # set default here, page override can be set. 
   private: false # set here or per page to modify robots meta, remove sitemap, robots and rss listing for page(s)
-    
-  # page only
+
+# page only
+# seo:
   # title: # page title override for title tag, og and twitter
   # description: # override other descriptions for seo
   # canonical: # add page ref to override .Permalink for canonical
