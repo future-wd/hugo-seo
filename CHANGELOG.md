@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/future-wd/hugo-seo/compare/v1.0.4...v1.0.5) (2022-12-27)
+
+
+### Bug Fixes
+
+* add meta ([4953338](https://github.com/future-wd/hugo-seo/commit/49533381e38e5dcaa011b0ba777ca9307689e230))
+* add meta ([3522bb0](https://github.com/future-wd/hugo-seo/commit/3522bb0208f3a601036a707066fb65b482a644a6))
+* add netlify config to test site ([472611f](https://github.com/future-wd/hugo-seo/commit/472611f066b8ba4e410ec54a830f00a1ae86a5c6))
+* add site config defaults for camelCase ([e1a1de7](https://github.com/future-wd/hugo-seo/commit/e1a1de76901be044bd05bc51efb4e8b998ad234f))
+* bump preview ([ab6636c](https://github.com/future-wd/hugo-seo/commit/ab6636cef656d8fdd49d9dd4201542d055915111))
+* cache ([ee935e0](https://github.com/future-wd/hugo-seo/commit/ee935e0baf471cb1172e61e45ad03247b02ddb9d))
+* cache test site partial ([936ab86](https://github.com/future-wd/hugo-seo/commit/936ab86a39777dfb897bff0e772b0dbae867cfed))
+* change to $ctx ([1935665](https://github.com/future-wd/hugo-seo/commit/1935665fb3d84e67c4abf6bac7e199e0a40df80d))
+* clean up breadcrumbs ([915959b](https://github.com/future-wd/hugo-seo/commit/915959bd66ffda75184c3e9ed39860ff8f1d0aa1))
+* jsonld types ([c329755](https://github.com/future-wd/hugo-seo/commit/c329755aee2e5bc2dcbd55ef2219b9d05180e038))
+* move breadcrumbs to jsonld ([fb4a999](https://github.com/future-wd/hugo-seo/commit/fb4a999e4b04a19b25421104d1d316cb1b2f168a))
+* move json breadcrumbs partial ([92a5ee2](https://github.com/future-wd/hugo-seo/commit/92a5ee2ae3c45791d02087e4ad5569a3c90809ed))
+* order print ([fb91bbb](https://github.com/future-wd/hugo-seo/commit/fb91bbbc2cc855ea9319a6c1f1794565696f7d28))
+* page example ([fd1f445](https://github.com/future-wd/hugo-seo/commit/fd1f4452f568e3ece696820f17a8103578ba96cd))
+* remove breadcrumbs parent ([b7cf272](https://github.com/future-wd/hugo-seo/commit/b7cf272e27bb1b0979dcd7a03c2c02e5b2996fbd))
+* remove caching which doesnt work ([1cb19d2](https://github.com/future-wd/hugo-seo/commit/1cb19d2730291fae2c28123da92260557bc90d7b))
+* remove camelCase ([fac265b](https://github.com/future-wd/hugo-seo/commit/fac265b4e9c8df8cb0fafb4a6be6a72d62856cbf))
+* remove redundant code ([d5b4082](https://github.com/future-wd/hugo-seo/commit/d5b4082cb61322230659ec26b3ce7190b8c213d1))
+* remove redundant code ([0e4c7a4](https://github.com/future-wd/hugo-seo/commit/0e4c7a465d41d62c268b0b894c7cc491b12d79c4))
+* remove related config ([b183b51](https://github.com/future-wd/hugo-seo/commit/b183b51ef04b2b09afc8498f014b6da77595da36))
+* separate params ([66b9243](https://github.com/future-wd/hugo-seo/commit/66b9243a3813ea65cb0b57d7aee8bb3f69406181))
+* snake case variables in params.html ([016f4f1](https://github.com/future-wd/hugo-seo/commit/016f4f1e9801074bcfc6fc8e64ee521f23d22b51))
+* snake case variables in params.html ([b9b0487](https://github.com/future-wd/hugo-seo/commit/b9b048768423eb6729cef36b4a22f6fac29d4e84))
+* swap home page title tag text ([68ce117](https://github.com/future-wd/hugo-seo/commit/68ce117db79a025668742389dd978caaf6a3e307))
+* upgrade required version ([ebf8987](https://github.com/future-wd/hugo-seo/commit/ebf898779d180af6283882566cdcd33860fa2486))
+* use 1 partial scope scratch for params ([b9494fe](https://github.com/future-wd/hugo-seo/commit/b9494fea6cf27a9bdf72759197cd4478922c485e))
+* use one partial scope scratch ([eb6710a](https://github.com/future-wd/hugo-seo/commit/eb6710af3cdb2072e8d7ae139e4890e34674fe11))
+
 ### [1.0.4](https://github.com/future-wd/hugo-seo/compare/v1.0.3...v1.0.4) (2022-11-22)
 
 
