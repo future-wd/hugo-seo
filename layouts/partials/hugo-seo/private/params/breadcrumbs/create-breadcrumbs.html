@@ -16,8 +16,15 @@
 {{ $s := newScratch }}
 {{ $s.Set "itemList" slice }}
 {{ $s.Set "itemCount" 1 }}
-{{ with .Parent }}
-  {{ partial "hugo-seo/private/params/breadcrumbs/parent-recursive" (dict "scratch" $s "parent" .) }}
+{{ range .Ancestors.Reverse }}
+  {{ $title := .Params.seo.title | default .Title }}
+  {{ $s.Add  "itemList" (slice (dict 
+    "@type" "ListItem"
+    "item" .Permalink 
+    "name" $title
+    "position" ($s.Get "itemCount")
+  ))}}
+  {{ $s.Add "itemCount" 1 }}
 {{ end }}
 {{ $s.Add  "itemList" (slice (dict 
   "@type" "ListItem"
@@ -25,4 +32,4 @@
   "position" ($s.Get "itemCount")
 )) }}
 
-{{ return dict "breadcrumbs" ($s.Get "itemList") }}
+{{ return ($s.Get "itemList") }}
