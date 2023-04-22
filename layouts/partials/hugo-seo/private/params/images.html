@@ -61,10 +61,12 @@
 
 {{ with $img }}
 	{{ $.s.SetInMap "params" "image" ( . | absURL) }}
-  {{ if $img_res.Height }}
-    {{ $.s.SetInMap "params" "image_height" ( $img_res.Height | string) }}
-    {{ $.s.SetInMap "params" "image_width" ( $img_res.Width | string) }}
-    {{ $.s.SetInMap "params" "image_type" $img_res.MediaType }}
+  {{ if $img_res }}
+    {{ with $img_res.Height }}
+      {{ $.s.SetInMap "params" "image_height" ( $img_res.Height | string) }}
+      {{ $.s.SetInMap "params" "image_width" ( $img_res.Width | string) }}
+      {{ $.s.SetInMap "params" "image_type" $img_res.MediaType }}
+    {{ end }}
   {{ else }}
     {{ $data := imageConfig $img }} 
     {{ $.s.SetInMap "params" "image_height" ($data.Height | string) }}
