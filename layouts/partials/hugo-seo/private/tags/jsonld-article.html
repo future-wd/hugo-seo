@@ -29,10 +29,14 @@
   {{ $authors := slice }}
   {{ range . }}
     {{ $author := (dict "@type" "Person") }}
-    {{ range $key, $value := . }}
-      {{ if or (eq $key "name") (eq $key "url") }}
-      {{ $author = merge $author (dict $key $value) }}
+    {{ if reflect.IsMap . }}
+      {{ range $key, $value := . }}
+        {{ if or (eq $key "name") (eq $key "url") }}
+        {{ $author = merge $author (dict $key $value) }}
+        {{ end }}
       {{ end }}
+    {{ else }}
+      {{ $author = merge $author (dict "name" .) }}
     {{ end }}
     {{ $authors = $authors | append $author }}
   {{ end }}
