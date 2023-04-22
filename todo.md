@@ -2,6 +2,8 @@
 
 ADD BETTER ERROR HANDLING TO IMAGES IN PARAMS!!!
 
+handle image path typos better - check for global/page and static
+
 document additional partial
 
 <https://support.google.com/webmasters/answer/6062598>

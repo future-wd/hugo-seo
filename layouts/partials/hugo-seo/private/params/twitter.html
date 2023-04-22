@@ -18,7 +18,7 @@
 {{/* We check the page params have author.twitter and use as handle */}}
 {{ with .Params.authors }}
   {{ with index . 0 }}
-    {{  $.s.SetInMap "params" "twitter_creator" (printf "@%s" .)  }}
+    {{  $.s.SetInMap "params" "twitter_creator" (printf "@%s" .twitter)  }}
   {{ end }}
 {{ else }}
   {{  with .Params.author.twitter  }}
