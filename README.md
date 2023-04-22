@@ -16,7 +16,7 @@ Handles all of your SEO needs:
 Requirements:
 
 - Go 1.14
-- Hugo 0.54.0
+- Hugo 0.109.0
 
 ## Installation
 
