@@ -17,12 +17,18 @@
 
 {{/* We check the page params have author.twitter and use as handle */}}
 {{ with .Params.authors }}
-  {{ with index . 0 }}
-    {{  $.s.SetInMap "params" "twitter_creator" (printf "@%s" .twitter)  }}
+  {{ if reflect.isSlice }}
+    {{ with index . 0 }}
+      {{ if reflect.isMap . }}
+        {{  $.s.SetInMap "params" "twitter_creator" (printf "@%s" .twitter)  }}
+      {{ end }}
+    {{ end }}
   {{ end }}
 {{ else }}
-  {{  with .Params.author.twitter  }}
-    {{  $.s.SetInMap "params" "twitter_creator" (printf "@%s" .)  }}
+  {{  with .Params.author  }}
+    {{ if reflect.isMap . }}
+      {{  $.s.SetInMap "params" "twitter_creator" (printf "@%s" .twitter)  }}
+    {{ end }}
   {{ end }}
 {{ end }}
 
