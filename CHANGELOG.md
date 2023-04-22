@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.7](https://github.com/future-wd/hugo-seo/compare/v1.0.6...v1.0.7) (2023-04-22)
+
+
+### Bug Fixes
+
+* twitter author context and check for slice ([08558a3](https://github.com/future-wd/hugo-seo/commit/08558a337e74a0694b39febc4e6a7d8b7d54c54b))
+
 ### [1.0.6](https://github.com/future-wd/hugo-seo/compare/v1.0.5...v1.0.6) (2023-04-22)
 
 ### [1.0.5](https://github.com/future-wd/hugo-seo/compare/v1.0.4...v1.0.5) (2022-12-27)
