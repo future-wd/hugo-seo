@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.9](https://github.com/future-wd/hugo-seo/compare/v1.0.8...v1.0.9) (2023-04-22)
+
+
+### Bug Fixes
+
+* Author/s accepts a string ([dcf2c7a](https://github.com/future-wd/hugo-seo/commit/dcf2c7acefd0f7639be148856193e2e6cf0188b8))
+
 ### [1.0.8](https://github.com/future-wd/hugo-seo/compare/v1.0.7...v1.0.8) (2023-04-22)
 
 
