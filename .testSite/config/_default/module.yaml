@@ -1,3 +1,3 @@
 imports:
-- path: github.com/GenieTim/hugo-seo
-replacements: "github.com/GenieTim/hugo-seo -> ../../"
+- path: github.com/future-wd/hugo-seo
+replacements: "github.com/future-wd/hugo-seo -> ../../"
