@@ -36,7 +36,7 @@
 {{/* merge additions
 	----------------------------- */}}
 
-{{ $extra := partial "partials/hugo-seo/add-tags.html" . }}
+{{ $extra := partial "hugo-seo/add-tags.html" . }}
 {{ $s.Add "jsonld" $extra.jsonld }}
 {{ $s.Add "meta" $extra.meta }}
 
