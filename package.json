@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/future-wd/hugo-seo.git"
+    "url": "git+https://github.com/GenieTim/hugo-seo.git"
   },
   "keywords": [
     "hugo",
@@ -21,9 +21,9 @@
   "author": "Sean Emerson (Future Web Design)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/future-wd/hugo-seo/issues"
+    "url": "https://github.com/GenieTim/hugo-seo/issues"
   },
-  "homepage": "https://github.com/future-wd/hugo-seo#readme",
+  "homepage": "https://github.com/GenieTim/hugo-seo#readme",
   "devDependencies": {
     "standard-version": "^9.5.0"
   }

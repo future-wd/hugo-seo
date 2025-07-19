@@ -32,10 +32,10 @@ Configure your project's module to import this module:
 # config.yaml
 module:
   imports:
-    - path: github.com/future-wd/hugo-seo
+    - path: github.com/GenieTim/hugo-seo
 ```
 
-Get the module with `hugo mod get -u github.com/future-wd/hugo-seo`
+Get the module with `hugo mod get -u github.com/GenieTim/hugo-seo`
 
 ## Usage
 

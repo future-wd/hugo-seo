@@ -1,3 +1,3 @@
-module github.com/future-wd/hugo-seo
+module github.com/GenieTim/hugo-seo
 
 go 1.14
