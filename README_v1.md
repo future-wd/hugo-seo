@@ -1,4 +1,4 @@
-# Hugo SEO Module v2 for Hugo v0.146.0 onwards
+# Hugo SEO Module V1 (legacy for hugo pre v0.146.0)
 
 Handles all of your SEO needs:
 
@@ -32,11 +32,10 @@ Configure your project's module to import this module:
 # config.yaml
 module:
   imports:
-    - path: github.com/future-wd/hugo-seo/v2
+    - path: github.com/future-wd/hugo-seo
 ```
 
-Get the module with `hugo mod get -u github.com/future-wd/hugo-seo/v2`
-or `hugo mod get -u` to update all modules at this time.
+Get the module with `hugo mod get -u github.com/future-wd/hugo-seo`
 
 ## Usage
 
