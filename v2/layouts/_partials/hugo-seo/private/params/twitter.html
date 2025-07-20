@@ -1,0 +1,36 @@
+{{/* currently Twitter card only
+    ---------------------------- */}}
+{{ with .ctx }}
+
+{{ with $.params.img }}
+    {{/* Most of the time we should have an image */}}
+    {{  $.s.SetInMap "params" "twitter_card" "summary_large_image"  }}
+{{ else }}
+    {{/* For edge cases without: */}}
+    {{  $.s.SetInMap "params" "twitter_card" "summary"  }}
+{{ end }}
+
+{{/* We check the site config sports a Social.twitter and use as handle */}}
+{{ with $.c.Social.twitter  }}
+    {{  $.s.SetInMap "params" "twitter_site" (printf "@%s" .)  }}
+{{  end  }}
+
+{{/* We check the page params have author.twitter and use as handle */}}
+{{ with .Params.authors }}
+  {{ if reflect.IsSlice .}}
+    {{ with index . 0 }}
+      {{ if reflect.IsMap . }}
+        {{  $.s.SetInMap "params" "twitter_creator" (printf "@%s" .twitter)  }}
+      {{ end }}
+    {{ end }}
+  {{ else }}
+    {{  with .Params.author }}
+      {{ if reflect.IsMap . }}
+        {{  $.s.SetInMap "params" "twitter_creator" (printf "@%s" .twitter)  }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ end }}
+

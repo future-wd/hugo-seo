@@ -1,0 +1,9 @@
+{{- /* https://developers.google.com/search/docs/advanced/structured-data/breadcrumb#json-ld_1 */ -}}
+{{ $s := newScratch }}
+{{ $s.Set "breadcrumb" dict }}
+
+{{ $s.SetInMap "breadcrumb" "@context" "https://schema.org" }}
+{{ $s.SetInMap "breadcrumb" "@type" "BreadcrumbList" }}
+{{ $s.SetInMap "breadcrumb" "itemListElement" .breadcrumbs }}
+
+{{ return $s.Get "breadcrumb" }}

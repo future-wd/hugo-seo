@@ -1,0 +1,24 @@
+{{ $s := newScratch }}
+{{ $s.Set "twitter" slice  }}
+
+{{ $s.Add "twitter" (dict "name" "twitter:card" "content" .twitter_card) }}
+{{ $s.Add "twitter" (dict "name" "twitter:title" "content" .title) }}
+
+{{ with .description }}
+  {{ $s.Add "twitter" (dict "name" "twitter:description" "content" . ) }}
+{{ end }}
+
+{{ with .twitter_site  }}
+  {{ $s.Add "twitter" (dict "name" "twitter:site" "content" . ) }}
+{{ end }}
+
+{{ with .twitter_creator }}
+  {{ $s.Add "twitter" (dict "name" "twitter:creator" "content" . ) }}
+{{ end }}
+
+{{ with .image }}
+  {{ $s.Add "twitter" (dict "name" "twitter:image" "content" . ) }}
+  {{ $s.Add "twitter" (dict "name" "twitter:image:alt" "content" $.title) }}
+{{ end }}
+
+{{ return $s.Get "twitter" }}

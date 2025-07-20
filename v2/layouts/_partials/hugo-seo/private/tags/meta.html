@@ -1,0 +1,30 @@
+{{ $s := newScratch }}
+{{ $s.Set "meta" slice  }}
+
+{{ $s.Add "meta" (dict "property" "canonical" "content" .canonical) }}
+
+{{ with .description }}
+{{ $s.Add "meta" (dict "property" "description" "content" . ) }}
+{{ end }}
+
+{{ with .next }}
+{{ $s.Add "meta" (dict "property" "next" "content" . ) }}
+{{ end }}
+
+{{ with .prev }}
+{{ $s.Add "meta" (dict "property" "prev" "content" . ) }}
+{{ end }}
+
+{{ with .alternative_output_formats }}
+  {{ range . }}
+    {{ $s.Add "meta" (dict "rel" .Rel "type" .MediaType.Type "href" .Permalink "title" site.Title) }}
+  {{ end }}
+{{ end }}
+
+{{ if (eq .private false) }}
+  {{ $s.Add "meta" (dict "property" "robots" "content" "index, follow" ) }}
+{{ else }}
+  {{ $s.Add "meta" (dict "property" "robots" "content"  "noindex, nofollow"  ) }}
+{{ end }}
+
+{{ return $s.Get "meta" }}

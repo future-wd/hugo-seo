@@ -1,0 +1,15 @@
+baseURL: https://hugo-seo.netlify.app/
+languageCode: en
+title: Hugo Seo Module Test Site
+
+
+# limit pagination to 2 for testing prev and next tags
+# paginate: 2 #deprecated v0.128
+pagination:
+  pagerSize: 2
+ignoreLogs: ['warning-goldmark-raw-html']
+
+enableRobotsTXT: true
+
+
+

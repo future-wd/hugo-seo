@@ -1,0 +1,13 @@
+
+
+{{ $c := site.Params.seo }}
+{{ $s := newScratch }}
+{{ $s.SetInMap "params" "title_tag_separator" ($c.title_tag.separator | default $c.titleSeparator) }}
+{{ $s.SetInMap "params" "title_tag_home_text" $c.title_tag.home_text }}
+{{ $s.SetInMap "params" "seo_image" $c.seo.image }}
+{{ $s.SetInMap "params" "og_article_types" ($c.og_article_types | default $c.ogArticleTypes) }}
+{{ $s.SetInMap "params" "jsonld_article_types" ($c.jsonld_article_types | default $c.jsonldArticleTypes) }}
+{{ $s.SetInMap "params" "jsonld_news_article_types" ($c.jsonld_news_article_types | default $c.jsonldNewsArticleTypes) }}
+{{ $s.SetInMap "params" "jsonld_blog_posting_types" ($c.jsonld_blog_posting_types | default $c.jsonldBlogPostingTypes) }}
+
+{{ return $s.Get "params" }}

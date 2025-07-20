@@ -1,0 +1,29 @@
+User-agent: *
+{{- $private := slice }}
+{{- range .Data.Pages }}
+  {{- if eq (.Param "seo.private") true }}
+    {{- $private = $private | append . }}
+  {{- end }}
+{{- end }}
+{{- if eq (len $private) 0 }}
+Allow: * 
+{{- end }}
+{{- if eq (len $private) (len .Data.Pages) }}
+Disallow: *
+{{- else }}
+{{ range $private }}
+Disallow: {{ .RelPermalink }}
+{{ end }}
+{{ end }}
+{{- if ne (len $private) (len .Data.Pages) }}
+{{- with site.BaseURL }}
+Sitemap: {{ . }}sitemap.xml
+{{- end }}
+{{- end -}}
+
+
+
+
+
+
+

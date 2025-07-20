@@ -1,0 +1,78 @@
+{{ with .ctx }}
+{{/* Adding the seo map to scratch which will recieve SEO key/value pairs. */}}
+
+
+{{/* Image
+	---------------------------- */}}
+{{ $img := false }}
+
+{{ with .Params.seo.image }}
+  {{  $img = . }}
+{{ else }}
+  {{/* If no SEO IMAGE is set, we look for the .Params.images slice
+    and use the first one  */}}
+  {{ with .Params.images  }}
+    {{ with index . 0  }}
+      {{ $img = . }}
+    {{ end }}
+  {{ else }}
+    {{ with .Params.image  }}
+      {{ $img = . }}
+    {{ end }}
+  {{ end }}
+{{  end }}
+
+{{/* if image isnt found via page seo.image or .images array or .image, use site config */}}
+{{ if not $img }}
+  {{ with $.c.seo_image }}
+    {{  $img = . }}
+  {{ end }}
+{{ end }}
+
+
+{{/* check if image is a page or global resource
+  assign the permalink to $img and assign resource to $img_res 
+  with $img ensures that an image is present
+  */}}
+{{ $img_res := false }}
+{{ with $img }}
+  {{ with resources.GetMatch . }}
+    {{ $img_res = . }}
+    {{ $img = .RelPermalink  }}
+  {{ else }}
+    {{ with $.ctx.Resources.GetMatch .}}
+      {{ $img_res = . }}
+      {{ $img = .RelPermalink  }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+
+{{/* Finally if after all of the conditional above we are not able to find an image for the page,
+	we resolve to looking for the following: */}}
+{{ if not $img }}
+	{{ $img_defaults := slice "/static/logo.jpg" "/static/logo.png" "/uploads/default.jpg"  }}
+	{{ range $path := $img_defaults }}
+		{{ if fileExists . }}
+			{{ $img = strings.TrimLeft "/static" $path }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+
+{{ with $img }}
+	{{ $.s.SetInMap "params" "image" ( . | absURL) }}
+  {{ if $img_res }}
+    {{ with $img_res.Height }}
+      {{ $.s.SetInMap "params" "image_height" ( $img_res.Height | string) }}
+      {{ $.s.SetInMap "params" "image_width" ( $img_res.Width | string) }}
+      {{ $.s.SetInMap "params" "image_type" $img_res.MediaType }}
+    {{ end }}
+  {{ else }}
+    {{ $data := imageConfig $img }} 
+    {{ $.s.SetInMap "params" "image_height" ($data.Height | string) }}
+    {{ $.s.SetInMap "params" "image_width"  ($data.Height | string) }}
+  {{ end }}
+{{ end }}
+
+
+{{ end }}

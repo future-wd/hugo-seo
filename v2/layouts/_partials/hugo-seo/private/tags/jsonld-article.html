@@ -1,0 +1,47 @@
+{{ $s := newScratch }}
+{{ $s.Set "article" dict }}
+
+
+{{ $s.SetInMap "article" "@context"  "https://schema.org" }}
+{{ $s.SetInMap "article" "@type"  .jsonld_type }}
+{{ $s.SetInMap "article" "url" .canonical }}
+{{ $s.SetInMap "article" "headline" .title }}
+{{ $s.SetInMap "article" "description" .description }}
+{{ $s.SetInMap "article" "article_body" .article_body }}
+
+{{ with .image }}
+{{ $s.SetInMap "article" "image" . }}
+{{ end }}
+
+{{ with .ctx.WordCount }}
+  {{ $s.SetInMap "article" "wordcount" . }}
+{{ end }}
+
+{{ with .date_published }}
+  {{ $s.SetInMap "article" "date_published" . }}
+{{ end }}
+
+{{ with .date_modified }}
+  {{ $s.SetInMap "article" "date_modified" . }}
+{{ end }}
+
+{{ with .authors }}
+  {{ $authors := slice }}
+  {{ range . }}
+    {{ $author := (dict "@type" "Person") }}
+    {{ if reflect.IsMap . }}
+      {{ range $key, $value := . }}
+        {{ if or (eq $key "name") (eq $key "url") }}
+        {{ $author = merge $author (dict $key $value) }}
+        {{ end }}
+      {{ end }}
+    {{ else }}
+      {{ $author = merge $author (dict "name" .) }}
+    {{ end }}
+    {{ $authors = $authors | append $author }}
+  {{ end }}
+  {{ $s.SetInMap "article" "authors" $authors }}
+{{ end }}
+
+
+{{ return $s.Get "article"  }}

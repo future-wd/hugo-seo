@@ -1,0 +1,129 @@
+
+
+{{/* Adding the seo map to scratch which will recieve SEO key/value pairs. */}}
+
+{{ with .ctx }}
+
+{{/* Dates
+	----------------------------- */}}
+
+{{  if not .PublishDate.IsZero  }}
+{{ $.s.SetInMap "params" "date_published" (.PublishDate.Format "2006-01-02T15:04:05-07:00")  }}
+{{  else if not .Date.IsZero  }}
+{{ $.s.SetInMap "params" "date_published" (.Date.Format "2006-01-02T15:04:05-07:00")  }}
+{{  end  }}
+{{  if not .Lastmod.IsZero  }}
+{{ $.s.SetInMap "params" "date_modified" (.Lastmod.Format "2006-01-02T15:04:05-07:00")  }}
+{{  end  }}
+
+{{/* Description
+	----------------------------------------
+	We use the following order of precedence
+	1. SEO Description, then, if not found,
+	2. Page Description, then if not found,
+	3. Page Summary then, if not found,
+	4. Site params SEO Description  
+  5. Site params description 
+  As it could potentially contain HTML tags, 
+  we strip them with plainify                   */}}
+{{ $description := "" }}
+{{/* 1. SEO Description */}}
+{{ if .Params.seo.description }}
+	{{ $description = .Params.seo.description }}
+{{/* 2. Description */}}
+{{ else if .Description }}
+	{{ $description = .Description }}
+{{/* 3. Summary */}}
+{{ else if .Summary }}
+	{{ $description = .Summary }}
+{{/* 4. site params seo description */}}
+{{ else if $.params.c.Description }}
+  {{ $description = site.Description }}
+{{/* 5. Site params description */}}
+{{  else  }}
+{{ $description = site.Params.description }}
+{{ end }}
+
+{{ with $description }}
+	{{/* We make sure text is sanitzed before storing as data (to avoid html or markdown) */}}
+	{{ $.s.SetInMap "params" "description" (. | markdownify | plainify) }}
+{{ end }}
+
+{{/* page title
+  ----------------------------
+1. Page seo title 
+2. Page title  */}}
+{{ $title := .Title }}
+{{ with .Params.seo.title }}
+	{{ $title = . }}
+{{ end }}
+{{$.s.SetInMap "params" "title" $title }}
+
+{{/* Site title
+  ----------------------------
+1. Site title 
+2. Poorly config'd site title  */}}
+{{ $site_title := false }}
+{{ with site.Title }}
+  {{ $site_title = . }}
+{{ else }}
+  {{ $site_title = site.Params.Title }}
+{{ end }}
+{{$.s.SetInMap "params" "site_title" $site_title }}
+ 
+{{/* Title Tag
+  ---------------------------- 
+	We use the following logic
+	1. Every pages: `{$title} | {$site_title}`
+	2. Homepage: , `{$site_title}` or `{$site_title} | {$title_tag_home_text} ` if available
+  "|" title seperator is configured @ title_tag_separator
+  *depreciated* site.Params.seo.titleSeparator */}}
+{{ if not .IsHome }}
+	{{/* 1. All except home page */}}
+	{{$.s.SetInMap "params" "title_tag" (printf "%s %s %s" $title $.params.c.title_tag_separator $site_title)  }}
+{{ else }}
+	{{/* 2. Home page */}}
+  {{ if $.params.c.title_tag_home_text }}
+    {{$.s.SetInMap "params" "title_tag" (printf "%s %s %s" $site_title $.params.c.title_tag_separator $.params.c.title_tag_home_text)  }}
+  {{ else }}
+    {{$.s.SetInMap "params" "title_tag" $site_title }}
+  {{ end }}
+{{ end }}
+
+
+{{/* We check for the private param 
+  site.Params.seo.private: true will make
+  the following return true also */}}
+{{$.s.SetInMap "params" "private" (.Param "seo.private") }}
+
+
+{{/* Locale 
+	---------------------------- */}}
+{{$.s.SetInMap "params" "locale" .Lang }}
+
+
+{{/* Canonical
+---------------------------- */}}
+{{/* .IsNode is for list pages */}}
+{{ if .IsNode }}
+  {{$.s.SetInMap "params" "canonical" (.Paginator.URL | absURL) }}
+  {{/* don't generate prev and next for home page (which is a node/list page) */}}
+  {{ if not .IsHome }}
+    {{ if .Paginator.HasPrev -}}
+      {{$.s.SetInMap "params" "prev" (.Paginator.Prev.URL | absURL) }}
+    {{ end }}
+    {{ if .Paginator.HasNext -}}
+      {{$.s.SetInMap "params" "next" (.Paginator.Next.URL | absURL) }}
+    {{ end }}
+  {{ end }}
+{{ else }}
+{{/* standard pages */}}
+  {{ with .Params.seo.canonical }}
+    {{ $.s.SetInMap "params" "canonical" (. | absURL) }}
+  {{ else }}
+    {{$.s.SetInMap "params" "canonical" .Permalink }}
+  {{ end }}
+{{ end }}
+
+{{ end }}
+

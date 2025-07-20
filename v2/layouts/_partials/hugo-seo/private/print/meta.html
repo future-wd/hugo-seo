@@ -1,0 +1,26 @@
+{{/* 
+	Print meta tags from inpt
+	
+	@author @sean-au
+	
+	@access private
+
+  @context (slice (dict "prop" "value" "prop" "value" etc.)
+	
+  Recursive nature handles nested slices
+
+	@example {{ partial "hugo-seo/private/print/meta" . }}
+
+ */}}
+{{- if reflect.IsSlice . -}}
+  {{- range . -}}
+    {{- partial "hugo-seo/private/print/meta" . -}}
+  {{- end -}}
+{{- else -}}
+  {{ if .property }}
+    {{ printf `<meta property="%s" content="%s">` .property .content | safeHTML }}
+  {{ else if .name }}
+    {{ printf `<meta name="%s" content="%s">` .name .content | safeHTML }}
+  {{ end }}
+{{- end -}}
+
